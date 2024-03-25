@@ -1,20 +1,15 @@
 class Solution:
     def findDuplicates(self, nums: List[int]) -> List[int]:
-        d = {}
-        lst = []
-        for i in nums:
-            if i not in d:
-                d[i] = 1
-            else:
-                d[i]+=1
-         
-        for i,count in d.items():
-            if count>1:
-                lst.append(i)
-        if lst:
-            return sorted(lst)
-        
-        else:
-            return []
+        duplicates = []
+
+        for num in nums:
+            abs_index = abs(num) -1
             
+            if nums[abs_index] < 0:
+                duplicates.append(abs_index + 1)
+            
+            else:
+                nums[abs_index] *= -1
+        
+        return duplicates
         
