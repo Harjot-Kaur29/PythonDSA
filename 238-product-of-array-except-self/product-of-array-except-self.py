@@ -3,16 +3,12 @@ class Solution:
         n = len(nums)
         answer = [1]*n
 
-        prefix_product = 1
-        for i in range(0,n):
-            answer[i] *= prefix_product
-            prefix_product *=nums[i]
-        
-        suffix_product = 1
-        for i in range(n-1,-1,-1):
-            answer[i] *= suffix_product
-            suffix_product *=nums[i]
+        for i in range(1,n):
+            answer[i] = answer[i-1]*nums[i-1]
+
+        suffix = 1
+        for j in range(n-1,-1,-1):
+            answer[j] = answer[j] * suffix
+            suffix = suffix * nums[j]
+
         return answer
-
-
-        
